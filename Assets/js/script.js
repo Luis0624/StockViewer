@@ -52,6 +52,7 @@ $("#tickerSearchBtn").on("click", function(event){
         stockList.push(companyName);
     }
     stockFetch();
+    displayTickers();
     storeTickerArray();
     storeCurrentTicker();
     renderStock();
@@ -83,6 +84,7 @@ function stockFetch(){
         }
         console.log( points);
         var labels = Object.keys( data["Time Series (Daily)"] ).splice(0, daysToShow).reverse()
+        var 
         var ctx = document.getElementById('myChart').getContext('2d');
         var myLineChart = new Chart(ctx, {
             type: 'line',
@@ -98,3 +100,50 @@ function stockFetch(){
         });
     });
 }
+// This function runs to open Tickers API AJAX calll and display current ticker 
+async function displayTickers() {
+    var apiKey= "9JC9QYQ5JH3L8UOI";
+   var queryURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyName}&apikey=${apiKey}`;
+   var response = await $.ajax({
+       url: queryURL,
+       method: "GET"
+   })
+   console.log(response);
+   var symbol = response.Symbol;
+   var name = response.name
+   var sector = response.Sector;
+   //var lastVolume = response['Time Series (1min)'][lastRefreshed]['5. volume']
+   var movingAverage = response[`50DayMovingAverage`]
+console.log(symbol,movingAverage);
+   $('#stockSymbol').text(symbol);
+   $('#sector').text(sector);
+   $('#stockVolume').text(numberWithCommas(lastVolume));
+   $("#stockIndicator").hide();
+   }
+
+
+
+   // on change event handler for text input
+var textInput = document.querySelector(".userTextInput")
+textInput.addEventListener("change", function(evt) {
+   searchBarFetch(evt.target.value)
+});
+ 
+async function searchBarFetch(searchVal) {
+    var API_KEY = "9JC9QYQ5JH3L8UOI";
+    var response = await fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${searchVal}&apikey=${API_KEY}`)
+    var data = await response.json()
+    console.log('THE DATA =--> ', data)
+    
+ 
+}
+ var syblMatch1 = data["bestMatches"][0][1].
+ 
+// var syblMatch2 = 
+// var syblMatch3 =
+ 
+// var syblMatch1 = document.querySelector(".symbolMatch1")
+// var syblMatch1 = document.querySelector(".symbolMatch2")
+// var syblMatch1 = document.querySelector(".symbolMatch3")
+// var syblMatch1 = document.querySelector(".symbolMatch4")
+// var syblMatch1 = document.querySelector(".symbolMatch5")

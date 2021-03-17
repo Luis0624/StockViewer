@@ -57,3 +57,77 @@ h5 {
     padding-right: 2rem;
     margin-right: -1rem;
 }
+#stockIndicator {
+    text-align: left;
+    padding: 10px;
+    margin: 5px;
+    color: red;
+}
+.ajaxtrigger:hover {
+    cursor: pointer;
+    cursor: hand;
+}
+#stock_miniQuote_head {
+    background-color: #464A55;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+#stock_miniQuote {
+    border-bottom-color: #DDDDDD;
+    border-bottom-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #DDDDDD;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #DDDDDD;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: initial;
+    border-top-style: none;
+    border-top-width: initial;
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    padding-top: 10px;
+    vertical-align: text-top;
+    height: 100%;
+    width: 99%;
+}
+.stock_divider {
+    border-bottom: 1px solid #B2B0AD;
+    padding-bottom: 5px;
+}
+#stock_left {
+    float: left;
+    width: 35%;
+    height: 50px;
+    border-right: 1px solid #B2B0AD;
+    padding: 0 15px;
+}
+#stock_right {
+    float: right;
+    width: *;
+    padding: 0 20px;
+    vertical-align: text-top;
+}
+.stock_label {
+    font-size: 14px;
+}
+.stock_strong {
+    font-size: 17px;
+}
+#stock_body {
+    padding: 10px 0 15px;
+}
+#stock_body_content {
+    float: left;
+    width: 170px;
+    padding: 0 15px;
+}
