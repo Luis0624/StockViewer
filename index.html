@@ -1,0 +1,109 @@
+  <!doctype html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather Dashboard</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Varela+Round&display=swap" rel="stylesheet">
+        <!--[if (!IE)|(gt IE 8)]><!-->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+         <!--<![endif]-->
+          <!--[if lte IE 8]><!-->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+          <!--[endif]-->
+</head>
+<body>
+    <!-- navigation Bar-->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-5 text-center">StocksViewer APP</h1>
+        </div>
+    </div>
+    
+    <!-- Main Content Container -->
+    <div class="container-fluid">
+        <!-- Main Content Row -->
+        <div class="row">
+            <!-- Ticker Search Bar -->
+            <div class="col-3 searchCol">
+                <!-- Search Form with Button -->
+                <h4>Search for ticker:</h4>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="stockInput" placeholder="TickerName" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="tickerSearchBtn">
+                            <img src="./Search_icon.jfif" width="20px"/></button>
+                        </div>
+                    </div>
+                    <!-- Ticker -->
+                    <div class="list-group" id="stockList">
+                      </div>                    
+                </div>
+                <!-- Stock Information Column -->
+                <div class="col-9">
+                    <div class="card" style="width: 100%;" id="stocksContainer"></div>
+                      <div id="datatContainer"></div>
+                </div>
+        </div>
+    </div>
+
+    <div id="stock_miniQuote_head" class="ajaxtrigger"><span id="stockSymbol"></span>&nbsp;(common stock)</div>
+
+    <div id="stock_miniQuote">
+    <div id="stockIndicator"><p>Retrieving stock information...</p></div>
+    
+    
+        <div class="stock_divider">
+    
+          <div id="stock_left">
+            <span class="stock_label">Price</span><br/>
+            <strong class="stock_strong">$<span id="sector"></span></strong><br/>
+          </div>
+    
+    
+          <div id="stock_right">
+            <span class="stock_label">Change</span><br/>
+            <strong class="stock_strong"><span id="stockChange"></span></strong><br />
+            <strong class="stock_strong"><span id="stockChangePercent"></span></strong><br />
+          </div>
+          <div style="clear: both;"></div>
+    
+    
+        </div>
+    
+          <div id="stock_body">
+    
+          <div id="stock_body_content">
+            <span class="stock_label">Volume</span><br/>
+            <strong class="stock_strong"><span id="stockVolume"></span></strong>
+            <br /><br />
+            <span class="stock_label">Average Daily Volume</span><br/>
+            <strong class="stock_strong"><span id="stockAvgVolume"></span></strong>
+            <br /><br />
+            <span class="stock_label">52 Week Range</span><br/>
+            <strong class="stock_strong"><span id="stockRange"></span></strong>
+    
+          </div>
+    
+          <div style="clear: both;"></div>
+    
+        </div>
+    
+    
+    
+    </div>
+    
+    
+    
+    </div>
+  
+    <canvas id="myChart"></canvas>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src= "./Assets/js/javascript.js"></script>
+
+</body>
+</html>
