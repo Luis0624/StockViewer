@@ -1,59 +1,117 @@
-h1 {
-    margin-top: -2rem;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 4rem;
-    font-weight: 600;
-}
-p,
-a {
-    font-family: 'Montserrat', sans-serif;
-}
-h3,
-h4,
-h5 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-}
-.jumbotron {
-    background-color: #0062CC;
-    color: rgb(255, 255, 255);
-    height: 4rem;
-    margin-bottom: 0px;
-}
-.low {
-    border-radius: 6px;
-    background-color: green;
-    padding: 5px;
-    color: white;
-}
-.moderate {
-    border-radius: 6px;
-    background-color: yellow;
-    padding: 5px;
-    color: black;
-}
-.high {
-    border-radius: 6px;
-    background-color: orange;
-    padding: 5px;
-    color: black;
-}
-.vhigh {
-    border-radius: 6px;
-    background-color: red;
-    padding: 5px;
-    color: white;
-}
-.extreme {
-    border-radius: 6px;
-    background-color: violet;
-    padding: 5px;
-    color: white;
-}
-.searchCol {
-    height: 100vh;
-    background-color: whitesmoke;
-    padding-top: 1rem;
-    padding-right: 2rem;
-    margin-right: -1rem;
-}
+.navStyle{
+    background-color: rgba(81, 129, 190, 0.733);
+    margin-bottom: 1rem;
+    
+    }
+    
+    .navText{
+    font-size: 2.55rem;
+    padding-left: 7.5rem;
+    text-shadow: 2px 2px whitesmoke;
+    
+    }
+    
+    .menuText{
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-right: 2rem;
+    }
+    b{
+        font-size: 1.35rem;
+        
+    }
+    .fontFam{
+        font-family: 'Cormorant Unicase', serif;
+        color:rgb(44, 42, 42);
+    }
+    
+    #icon{
+    margin: 0px 10px;
+    
+    }
+    
+    .inputSpacing{
+        margin: 0px 10px;
+    }
+    
+    
+    #loading_container{
+        display: none; 
+        width: 200px;
+        margin-top: 1%;
+        margin-left: 45%;
+        margin-right: auto;
+        
+    }  
+    
+    .labelStyle{
+        border-bottom:2px solid rgb(44, 42, 42);
+    }
+    
+    #company_container{
+        margin-top: 2rem;
+        font-size: 1.25rem;
+    }
+    
+    .btnText{
+        font-size: 1rem;
+    }
+      
+    .getBtn{
+        background-color:rgba(81, 128, 190, 0.562); ;
+    }
+    
+    .getBtn:hover{
+        border: 3px solid 3px rgba(81, 129, 190, 0.733);
+        background-color:rgba(104, 141, 189, 0.281);
+        box-shadow:  0px 0px 11px 4px rgba(81, 129, 190, 0.733);
+        cursor: pointer;
+    
+    }
+    .dlBtn{
+        background-color: rgba(111, 196, 111, 0.815);
+    }
+    
+    .dlBtn:hover{
+        border: 3px solid 3px rgba(111, 196, 111, 0.815);
+        background-color:rgba(131, 199, 131, 0.281);
+        box-shadow:  0px 0px 11px 4px rgba(111, 196, 111, 0.815);
+        cursor: pointer;
+    }
+    
+    #chartContainer{
+        height: 300px; 
+        width: 70%; 
+        margin-top: 5%;
+        margin-left: 13%;
+        margin-right: auto;
+    }
+      
+    #download_data{
+        display: none;
+        margin-left: 1rem;
+        
+    }
+     
+    #tableTitle{
+        font-weight: bold;
+        font-size: larger;
+        text-align: center;
+        margin-bottom: 1%;
+        padding-top: 1.15rem;
+        border-top: 2px solid rgba(81, 129, 190, 0.733);
+    }
+    
+    #table_container{
+        margin-left: 30px;
+        margin-top: 5%;
+        width: 100%;
+        margin-right: 20px;
+        
+    }
+    
+    table{
+    margin-left: 20%;
+    margin-right: 0;    
+    }
+      

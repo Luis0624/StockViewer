@@ -1,100 +1,131 @@
-var stockList = [];
-var companyName;
-// Local storage functions 
-initTickerList();
-initStock();
-//This fucntion displays the stocks entered by the user into the DOM 
-function renderStock(){
-    $("#stockList").empty();
-    $("#stockInput").val("");
-    for(i=0; i<stockList.length; i++){
-        var a = $("<a>");
-        a.addClass("list-group-item list-group-item-action list-group-item-primary ticker");
-        a.attr("data-tickers"), stockList[i];
-        a.text("#stockList").prepend(a);
-    }
+var api = `PVQO7GOWTICAPNH4`
+var dps = [];
+var company = null;
+var symbol = null;
+var chart = null;
+var columns = ["Date", "Open", "High", "Low", "Close", "Adjusted Close", "Volume"];
+var data1 = []
+
+// Allow user to download stocks data borugh from the external Alpha Vantage API
+function download(){
+  window.location = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol="+symbol+"&apikey="+api+"&datatype=csv";
 }
-// This function pulls the stocks list array from local storage 
-function initTickerList() {
-    var storedTickers = JSON.parse(localStorage.getItem("Stocks"));
-    if(storedTickers !== null) {
-        stockList = storedTickers;
-    }
-    renderStock();
-}
-//This function pulls the current ticker symbal infos into local storage to display teh current stock
-function initStock() {
-    var storeddata = JSON.parse(localStorage.getItem("currentTicker"));
-    if (storeddata !== null) {
-        companyName = storeddata;
-                        //displayTickers();      ******* TODO
-                        //displayDailyInfos();              ****TODO
-    }
-}
-// This function saves the ticker array to local storage 
-function storeTickerArray() {
-    localStorage.setItem("tickers", JSON.stringify("stockList"));
-}
-// This function saves the currently displayed ticker to local storage 
-function storeCurrentTicker(){
-    localStorage.setItem("currentTicker", JSON.stringify(companyName));
-}
-// click event handler for ticker search button 
-$("#tickerSearchBtn").on("click", function(event){
-    event.preventDefault();
-    companyName = $("#stockInput").val().trim();
-    if(companyName === ""){
-        alert("Please enter ticker symbal to look up")
-    }else if (stockList.length >=5){
-        stockList.shift();
-        stockList.push(companyName);
-    }else{
-        stockList.push(companyName);
-    }
-    stockFetch();
-    storeTickerArray();
-    storeCurrentTicker();
-    renderStock();
-                         //displayTickers();    ******TODO
-                        //displayDailyInfos(); ******TODO
-});
-//event handler for if the user clicks enter after entering the ticker search term
-$("#stockInput").keypress(function(e){
-    if(e.which == 13){
-        $("#tickerSearchBtn").click();
-    }
-})
-var daysToShow = 20;
-var apiKey= "9JC9QYQ5JH3L8UOI";
-var url= `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${companyName}&apikey=${apiKey}`;
-var points = [];
-function stockFetch(){
-    fetch(url)
-    .then(function(response){
-        return response.json()
-    })
-    .then(function(data){
-        console.log(data)
-        var days = Object.values( data["Time Series (Daily)"] );
-        console.log( days );
-        for (var i = daysToShow - 1; i >= 0; i--) {
-            var coordinates = Number( days[i]['4. close'] )
-            points.push(coordinates)
+
+// Pulling needed data from API
+function getting_data(){
+  if(company !== null){
+      console.log(company);
+    $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol="+symbol+"&outputsize=full&apikey="+api)
+    .done(function(data){
+        console.log(data);
+      var date = data["Time Series (Daily)"]
+      let a = 20;
+      let b = 7;
+      for(var d in date){
+        var r = d.split("-");
+        if(a-- > 0){
+          var value = date[d];
+          dps.unshift({x: new Date(parseInt(r[0]), parseInt(r[1])-1, parseInt(r[2])), y: parseFloat(value["1. open"])});
+          if(b-- > 0){
+            let c = [d, value["1. open"], value["2. high"], value["3. low"], value["4. close"], value["5. adjusted close"], value["6. volume"]];
+            data1.push(c);
+          }
+        }else{
+          break;
         }
-        console.log( points);
-        var labels = Object.keys( data["Time Series (Daily)"] ).splice(0, daysToShow).reverse()
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'close',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: points
-                }]
-            },
-            options: {}
-        });
-    });
+      }
+
+    
+      console.log(document.getElementById("symbol-input").value);
+
+      
+
+      graph();
+      drawTable();
+      document.getElementById("loading_container").style.display = "none";
+      document.getElementById("download_data").style.display = "block";
+      document.getElementById("get_data").disabled = false;
+      document.getElementById("chartContainer").disabled = false;
+    })
+    .fail(function(textStatus, error){
+      alert(textStatus+" "+error+"\nReload the page");
+    })
+  }
+}
+
+function graph(){
+  chart = new CanvasJS.Chart("chartContainer", {
+    title:{
+      text: company.toUpperCase()
+    },
+    animationEnabled: true,
+    theme: "light2",
+    axisY:{
+      title: "Open Prices",
+      includeZero: false
+    },
+    axisX:{
+      title: "Date",
+      valueFormatString: "DD-MMM"
+    },
+    data: [{        
+      type: "line",
+          indexLabelFontSize: 16,
+      dataPoints: dps
+    }]
+  });
+  chart.options.data[0].dataPoints = dps;
+  chart.render();
+}
+
+
+function getData(){
+  if(chart !== null){
+    chart.destroy();
+  }
+  data1 = [];
+  dps = [];
+  document.getElementById("table_container").innerHTML = "";
+  company = document.getElementById("symbol-input").value;
+  let r = company.split("(");
+  symbol = document.getElementById("symbol-input").value;
+  console.log(symbol);
+  document.getElementById("loading_container").style.display = "block";
+  document.getElementById("download_data").style.display = "none";
+  document.getElementById("get_data").disabled = true;
+  document.getElementById("chartContainer").disabled = true;
+  getting_data();
+}
+
+// Stock View table with daily data display 
+function drawTable(){
+  var table_container = document.getElementById("table_container");
+  var tableTitle = document.createElement("p");
+  tableTitle.id = "tableTitle";
+  tableTitle.className = "fontFam"
+  var cell = document.createTextNode("RECENT END OF DAY PRICES");
+  tableTitle.appendChild(cell);
+  table_container.appendChild(tableTitle);
+  var table = document.createElement("table");
+  table.className = "table fontFam centered";
+  var row = document.createElement("tr");
+  for(let i=0;i<columns.length;i++){
+    var col = document.createElement("th");
+    col.scope = "col";
+    cell = document.createTextNode(columns[i]);
+    col.appendChild(cell);
+    row.appendChild(col);
+  }
+  table.appendChild(row);
+  for(let i=0;i<7;i++){
+    row = document.createElement("tr");
+    for(let j=0;j<7;j++){
+      col = document.createElement("td");
+      cell = document.createTextNode(data1[i][j]);
+      col.appendChild(cell);
+      row.appendChild(col);
+    }
+    table.appendChild(row);
+  }
+  table_container.appendChild(table);
 }
