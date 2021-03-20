@@ -22,7 +22,9 @@ StockViewer app will provide users with a specific ticker's data information suc
 * Clicking on "Add" on the "Navigation" Widget will display "News_Add" in a Modal Dialog.
 * Clicking "OK" on the "News_Add" Modal Dialog will add the news to Local Storage and display it whenever the ticker symbol is selected.
 
-Placeholder for image text
-![placeholder alt text ](place/holder/for/image/path)
+![deployed app ](Assets\images\appDemo.png)
+Check out our delpoyed app @
+[StockViewer App](https://luis0624.github.io/StockViewer/)
 
-[placeholder for link text ](https://github.com/.git)
+
+
