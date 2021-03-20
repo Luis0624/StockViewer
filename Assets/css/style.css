@@ -9,6 +9,7 @@
     /* padding-left: 7.5rem; */
     
     
+    
     }
     
     .menuText{
@@ -118,7 +119,7 @@
     }
       
 
-    /* .mainContainer{
+    .mainContainer{
         max-width: 100%;
         max-width: 100%;
         background-image: url("../images/mainImage.png") ;
@@ -126,8 +127,6 @@
         background-size: cover;
         background-repeat: no-repeat;
         image-rendering: optimizeQuality;
-        
-       
-    } */
+    }
 
 
