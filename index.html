@@ -1,94 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Weather Dashboard</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat%7CVarela+Round&display=swap" rel="stylesheet">
-        <!--[if (!IE)|(gt IE 8)]><!-->
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-         <!--<![endif]-->
-          <!--[if lte IE 8]><!-->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-          <!--[endif]-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Viewer Pro</title>
+    <!-- google fonts link -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@700&family=Indie+Flower&display=swap" rel="stylesheet">
+    <!-- bulma css link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./Assets/css/style.css">
+    <title>Stock Viewer Pro</title>
 </head>
 <body>
-    <!-- navigation Bar-->
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-5 text-center">StocksViewer APP</h1>
-        </div>
+  <nav class="navbar navStyle" role="navigation" aria-label="main navigation">
+    
+    <div class="navbar-brand fontFam">
+      <a class="navbar-item" id="icon" href="https://github.com/Moesaidi76/StockViewer_App/tree/master" target="_blank">
+        <i class="fas fa-landmark" id="icon">
+          <b class="fontFam">Manage your Portfolio</b>
+        </i>
+      </a> 
     </div>
-    <!-- Main Content Container -->
-    <div class="container-fluid">
-        <!-- Main Content Row -->
-        <div class="row">
-            <!-- Ticker Search Bar -->
-            <div class="col-3 searchCol">
-                <!-- Search Form with Button -->
-                <h4>Search for ticker:</h4>
-                <div class="input-group mb-3">
-                    <input type="text" list="ticker-autocomplete" class="form-control userTextInput" id="stockInput" placeholder="Ticker Name" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <datalist id="ticker-autocomplete">
-                        <option class="symbolMatch1" value="">
-                        <option class="symbolMatch2" value="">
-                        <option class="symbolMatch3" value="">
-                        <option class="symbolMatch4" value="">
-                        <option class="symbolMatch5" value="">
-                    </datalist>
 
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button" id="tickerSearchBtn">
-                            <img src="./Search_icon.jfif" width="20px"/></button>
-                        </div>
-                    </div>
-                    <!-- Ticker -->
-                    <div class="list-group" id="stockList">
-                      </div>                    
-                </div>
-                <!-- Stock Information Column -->
-                <div class="col-9">
-                    <div class="card" style="width: 100%;" id="stocksContainer"></div>
-                      <div id="datatContainer"></div>
-                </div>
-        </div>
+    <div class="navbar-item fontFam">
+      <h1 class="navText">Stock Viewer Pro</h1>
     </div>
-    <div id="stock_miniQuote_head" class="ajaxtrigger"><span id="stockSymbol"></span>&nbsp;(common stock)</div>
-    <div id="stock_miniQuote">
-    <div id="stockIndicator"><p>Retrieving stock information...</p></div>
-        <div class="stock_divider">
-          <div id="stock_left">
-            <span class="stock_label">Price</span><br/>
-            <strong class="stock_strong">$<span id="sector"></span></strong><br/>
-          </div>
-          <div id="stock_right">
-            <span class="stock_label">Change</span><br/>
-            <strong class="stock_strong"><span id="stockChange"></span></strong><br />
-            <strong class="stock_strong"><span id="stockChangePercent"></span></strong><br />
-          </div>
-          <div style="clear: both;"></div>
-        </div>
-          <div id="stock_body">
-          <div id="stock_body_content">
-            <span class="stock_label">Volume</span><br/>
-            <strong class="stock_strong"><span id="stockVolume"></span></strong>
-            <br /><br />
-            <span class="stock_label">Average Daily Volume</span><br/>
-            <strong class="stock_strong"><span id="stockAvgVolume"></span></strong>
-            <br /><br />
-            <span class="stock_label">52 Week Range</span><br/>
-            <strong class="stock_strong"><span id="stockRange"></span></strong>
-          </div>
-          <div style="clear: both;"></div>
-        </div>
-    </div>
-    </div>
-    <canvas id="myChart"></canvas>
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src= "./Assets/js/javascript.js"></script>
+
+    <div class="navbar-item navbar-end has-dropdown is-hoverable fontFam menuText">
+      <a class="navbar-link">
+        Menu
+      </a>
+      <div class="navbar-dropdown">
+        <a href="https://github.com/Moesaidi76/StockViewer_App/tree/master" target="_blank" class="navbar-item">
+          About
+        </a>
+        <a href="https://github.com/Luis0624" target="_blank" class="navbar-item">
+          Contact Luis
+        </a>
+        <a href="https://github.com/Moesaidi76" target="_blank" class="navbar-item">
+          Contact Mohamed
+        </a>
+        <hr class="navbar-divider">
+        <a href="https://github.com/Moesaidi76/StockViewer_App/tree/master" target="_blank" class="navbar-item">
+          Report an issue
+        </a>
+      </div>
+  </nav>
+
+      <div class="fontFam" id="loading_container" >
+        <h6 style="margin-left: 11%;">Loading data.....</h6>
+        <progress></progress>
+      </div>
+      <div class="fontFam inputSpacing is-flex is-justify-content-center" id="company_container">
+        <label class="labelStyle"for="symbol-input">Ticker Symbol</label>
+        <input type="text" class="inputSpacing" id="symbol-input" name="symbol-input">
+        <button class="fontFam btnText getBtn" id="get_data" onclick="getData()" >Get Data</button>
+        <button class="fontFam btnText dlBtn" id="download_data" onclick="download()">Download Data(CSV)</button>
+      </div>
+      
+      <div id="chartContainer"></div> 
+      <div id="table_container"></div>
+   
+    <script src="https://kit.fontawesome.com/8c46a35f2b.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="./Assets/js/script.js"></script>
 </body>
 </html>
